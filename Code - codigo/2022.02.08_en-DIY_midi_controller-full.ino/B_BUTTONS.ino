@@ -75,7 +75,7 @@ void buttons() {
       if (buttonPState[i] != buttonCState[i]) {
         lastDebounceTime[i] = millis();
 
-        if (buttonCState[i] == LOW) { // if button is pressed
+        if (buttonCState[i] == HIGH) { // if button is pressed
 
           velocity[i] = 127; // if button is pressed velocity is 127
 

@@ -22,7 +22,7 @@
 // "TEENSY" if using a Teensy board
 // "DEBUG" if you just want to debug the code in the serial monitor
 
-#define DEBUG 1//* put here the uC you are using, like in the lines above followed by "1", like "ATMEGA328 1", "DEBUG 1", etc.
+#define ATMEGA32U4 1//* put here the uC you are using, like in the lines above followed by "1", like "ATMEGA328 1", "DEBUG 1", etc.
 
 /////////////////////////////////////////////
 // Are you using buttons?
@@ -231,9 +231,9 @@ Multiplexer4067 mux[N_MUX] = {
 // BUTTONS
 #ifdef USING_BUTTONS
 
-const byte N_BUTTONS = 34; //*  total numbers of buttons. Number of buttons in the Arduino + number of buttons on multiplexer 1 + number of buttons on multiplexer 2... (DON'T put Octave and MIDI channel (bank) buttons here)
-const byte N_BUTTONS_ARDUINO = 0; //* number of buttons connected straight to the Arduino
-const byte BUTTON_ARDUINO_PIN[N_BUTTONS] = {}; //* pins of each button connected straight to the Arduino
+const byte N_BUTTONS = 15; //*  total numbers of buttons. Number of buttons in the Arduino + number of buttons on multiplexer 1 + number of buttons on multiplexer 2... (DON'T put Octave and MIDI channel (bank) buttons here)
+const byte N_BUTTONS_ARDUINO = 15; //* number of buttons connected straight to the Arduino
+const byte BUTTON_ARDUINO_PIN[N_BUTTONS] = {0, 1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, A0, A1, A2}; //* pins of each button connected straight to the Arduino
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -262,10 +262,10 @@ byte T = 2;  // Toggle
 
 //* Put here the type of message you want to send, in the same order you declared the button pins
 // "NN" for Note Number | "CC" for Control Change | "T" for Note Number but in toggle mode
-byte MESSAGE_TYPE[N_BUTTONS] = {CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC, CC};
+byte MESSAGE_TYPE[N_BUTTONS] = {NN, NN, NN, NN, NN, NN, NN, NN, NN, NN, NN, NN, CC, CC, CC};
 
 //* Put here the number of the message you want to send, in the right order, no matter if it's a note number or CC.
-byte MESSAGE_VAL[N_BUTTONS] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34};
+byte MESSAGE_VAL[N_BUTTONS] = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 16, 17, 18};
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -314,10 +314,10 @@ unsigned long debounceDelay = 50;    //* the debounce time; increase if the outp
 
 #ifdef USING_POTENTIOMETERS
 
-const byte N_POTS = 4; //* total numbers of pots (slide & rotary). Number of pots in the Arduino + number of pots on multiplexer 1 + number of pots on multiplexer 2...
+const byte N_POTS = 2; //* total numbers of pots (slide & rotary). Number of pots in the Arduino + number of pots on multiplexer 1 + number of pots on multiplexer 2...
 
-const byte N_POTS_ARDUINO = 0; //* number of pots connected straight to the Arduino
-const byte POT_ARDUINO_PIN[N_POTS_ARDUINO] = {}; //* pins of each pot connected straight to the Arduino
+const byte N_POTS_ARDUINO = 2; //* number of pots connected straight to the Arduino
+const byte POT_ARDUINO_PIN[N_POTS_ARDUINO] = {A3, A4}; //* pins of each pot connected straight to the Arduino
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -335,7 +335,7 @@ const byte POT_MUX_PIN[N_MUX][16] = { //* pins of each pot of each mux in the or
 
 #define USING_CUSTOM_CC_N 1 //* comment if not using CUSTOM CC NUMBERS, uncomment if using it.
 #ifdef USING_CUSTOM_CC_N
-byte POT_CC_N[N_POTS] = {1, 2}; // Add the CC NUMBER of each pot you want
+byte POT_CC_N[N_POTS] = {64, 19}; // Add the CC NUMBER of each pot you want
 #endif
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
