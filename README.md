@@ -1,4 +1,4 @@
-# DIY-Midi-Controller-full
+# Hammond M3 MIDI Pedals
 
    Original code by Gustavo Silveira, 2021.
   - This is a custom fork I created to build a MIDI footpedal set similar to the Moog Taurus.
